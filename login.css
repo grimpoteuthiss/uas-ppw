@@ -1,0 +1,432 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+    /* background: yellow; */
+}
+
+body,
+html {
+    height: 100%;
+}
+
+.login-wrapper {
+    width: 420px;
+    /* padding: 20px; */
+    /* background: greenyellow; */
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* text-align: center; */
+}
+
+.login-wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    /* background: magenta; */
+    margin: 15px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid rgb(205, 205, 205);
+    border-radius: 40px;
+    font-size: 14px;
+    padding: 25px 45px 15px 20px;
+    box-sizing: border-box;
+    transition: 0.5s ease all;
+}
+
+input:focus~span,
+input:not(:focus):valid~span {
+    top: 5px;
+    bottom: 10px;
+    left: 20px;
+    font-size: 9px;
+    opacity: 1;
+}
+
+input:focus~span,
+input:focus~i {
+    color: #66B357;
+}
+
+.input-box span {
+    position: absolute;
+    pointer-events: none;
+    left: 20px;
+    top: 13px;
+    transition: 0.5s ease all;
+    color: rgb(112, 112, 112);
+}
+
+.input-box input:hover {
+    border: 1px solid rgb(52, 52, 52);
+}
+
+.input-box input:focus {
+    border: 1px solid #66B357;
+}
+
+.input-box input::placeholder {
+    color: rgb(159, 159, 159);
+}
+
+.input-box input::placeholder:focus {
+    color: rgb(159, 159, 159);
+    top: -15px;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: rgb(159, 159, 159);
+}
+
+.login-wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin: 15px 0 15px;
+}
+
+.remember-forgot a {
+    /* text-decoration: none; */
+    color: rgb(112, 112, 112);
+    transition: 0.5s ease all;
+}
+
+.remember-forgot a:hover {
+    text-decoration: none;
+}
+
+.login-wrapper .btn {
+    width: 100%;
+    height: 50px;
+    background: #66B357;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    transition: 0.5s ease all;
+}
+
+.login-wrapper .btn:hover {
+    background-color: #35b2ff;
+}
+
+.login-wrapper .credit {
+    text-align: center;
+    color: rgb(112, 112, 112);
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.login-wrapper .title {
+    font-size: 28px;
+    margin: 0 0 20px 0;
+}
+
+#leftHalf {
+    width: 50%;
+    margin-top: 40px;
+    position: absolute;
+    left: 0px;
+    height: 100vh;
+    transform: scale(0.9);
+    transform-origin: 0 0;  
+}
+
+#rightHalf {
+    position: absolute;
+    right: 25%;
+    top: 30%;
+    height: 100vh;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logoUNJ {
+    height: 150px;
+}
+
+#logoKampusMerdeka {
+    height:55px;
+}
+
+.captcha-box {
+    width: 100%;
+    height: 50px;
+    background: rgb(229, 229, 229);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.captcha-box label {
+    color: black;
+}
+
+.remember-forgot input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: rgb(229, 229, 229);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease all;
+}
+
+.remember-forgot label {
+    color: rgb(112, 112, 112);
+    font-size: 11px;
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+.check-wrapper {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.remember-forgot input[type="checkbox"]::after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 13px;
+    color: white;
+    display: none;
+}
+
+.remember-forgot input[type="checkbox"]:hover {
+    background-color: rgb(205, 205, 205);
+}
+
+.remember-forgot input[type="checkbox"]:checked {
+    background-color: #66B357;
+}
+
+.remember-forgot input[type="checkbox"]:checked::after {
+    display: block;
+}
+
+#captcha {
+    color: rgb(112, 112, 112);
+}
+
+.error {
+    background: #F8D7DA;
+    color: #cf0011;
+    box-sizing: border-box;
+    padding: 15px;
+    width: 100%;
+    border-radius: 5px;
+    margin: 20px 0 20px;
+}
+
+.switch a {
+    text-decoration: none;
+    color: #66B357;
+    transition: 0.5s ease all;
+}
+
+.switch a:hover {
+    color:#66B357;
+}
+
+.switch {
+    color: rgb(43, 43, 43);
+}
+
+/* .google {
+    width: 100%;
+    height: 50px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    color:#66B357;
+    font-weight: 600;
+    transition: 0.5s ease all;
+    border: 1px solid rgb(205, 205, 205);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google:hover {
+    background-color: #66B357;
+    color: white;
+    border: none;
+}
+
+.google i {
+    font-size: 36px;
+} */
+
+.gsi-material-button {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-appearance: none;
+    background-color: #f2f2f2;
+    background-image: none;
+    border: none;
+    -webkit-border-radius: 20px;
+    border-radius: 50px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #1f1f1f;
+    cursor: pointer;
+    font-family: 'Roboto', arial, sans-serif;
+    font-size: 14px;
+    height: 50px;
+    letter-spacing: 0.25px;
+    outline: none;
+    overflow: hidden;
+    padding: 0 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+    transition: background-color .218s, border-color .218s, box-shadow .218s;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+    min-width: min-content;
+  }
+  
+  .gsi-material-button .gsi-material-button-icon {
+    height: 20px;
+    margin-right: 12px;
+    min-width: 20px;
+    width: 20px;
+  }
+  
+  .gsi-material-button .gsi-material-button-content-wrapper {
+    -webkit-align-items: center;
+    align-items: center;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+  }
+  
+  .gsi-material-button .gsi-material-button-contents {
+    -webkit-flex-grow: 0;
+    flex-grow: 0;
+    font-family: 'Roboto', arial, sans-serif;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+  }
+  
+  .gsi-material-button .gsi-material-button-state {
+    -webkit-transition: opacity .218s;
+    transition: opacity .218s;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .gsi-material-button:disabled {
+    cursor: default;
+    background-color: #ffffff61;
+  }
+  
+  .gsi-material-button:disabled .gsi-material-button-state {
+    background-color: #1f1f1f1f;
+  }
+  
+  .gsi-material-button:disabled .gsi-material-button-contents {
+    opacity: 38%;
+  }
+  
+  .gsi-material-button:disabled .gsi-material-button-icon {
+    opacity: 38%;
+  }
+  
+  .gsi-material-button:not(:disabled):active .gsi-material-button-state, 
+  .gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+    background-color: #001d35;
+    opacity: 12%;
+  }
+  
+  .gsi-material-button:not(:disabled):hover {
+    -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  }
+  
+  .gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+    background-color: #001d35;
+    opacity: 8%;
+  }
+  
+
+.atau {
+    margin: 10px;
+    font-size: 11px;
+    color: rgb(112, 112, 112);
+    display: flex;
+    align-items: center;
+}
+
+.atau-wrapper {
+    margin: 20px;
+    height: 1px;
+    border-top: 1px solid rgb(205, 205, 205);
+    text-align: center;
+    position: relative;
+  }
+  
+.atau-wrapper span {
+    position: relative;
+    top: -1.2em;
+    background: white;
+    display: inline-block;
+    color: rgb(112, 112, 112);
+    font-size: 11px;
+  }
+  
