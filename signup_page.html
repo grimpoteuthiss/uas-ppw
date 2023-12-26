@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="dino.css" rel="stylesheet">
+    <link href="login.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+  <div class="tracking-section">
+    <div id="leftHalf">
+        <div class="login-wrapper">
+            <p class="title">Daftar</p>
+
+            <form action="signup.php" method="post">
+
+                <div class="input-box">
+                    <input type="text" name="username" required>
+                    <!-- <input type="text" placeholder="Nama Akun *" required> -->
+                    <span>Nama Akun *</span>
+                    <i class='bx bxs-user'></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" name="password" required>
+                    <!-- <input type="password" placeholder="Sandi *" required> -->
+                    <span>Sandi *</span>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="name" required>
+                    <!-- <input type="password" placeholder="Sandi *" required> -->
+                    <span>Nama Lengkap *</span>
+                    <i class='bx bxs-pencil'></i>
+                </div>
+
+                <input type="hidden" name="resbanget" id="input2" value="">
+                
+                <?php if (isset($_GET['error'])) { ?>
+                    <p class="error"> <?php echo $_GET['error']; ?> </p>
+                <?php } ?>
+                
+                <button type="submit" class="btn" id="btn">Daftar</button>
+                
+                <br>
+                <br>
+
+                <p class="switch">Sudah punya Akun? <a href="login_page.html">Masuk</a></p>
+
+            </form>
+        </div>
+    </div>
+
+    <div id="rightHalf">
+
+        <p class="title">Cant You Hear Me<br><b>ROAR!</b>-ing</p>
+
+
+        <section >
+            <div class="trex">
+                <div class="trex-arm-back">
+                    <img width="60" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-arm.png" />
+                </div>
+                <div class="trex-body">
+                    <div class="trex-eye"></div>
+                    <img width="300" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-body.png" />
+                </div>
+                <div class="trex-arm-front">
+                    <img width="60" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-arm3.png" />
+                </div>
+            </div>
+        </section>
+
+    </div>
+  </div>
+
+    <script src="dino.js"></script>
+
+</body>
+
+</html>

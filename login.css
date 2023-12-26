@@ -135,7 +135,7 @@ input:focus~i {
 }
 
 .login-wrapper .btn:hover {
-    background-color: #35b2ff;
+    background-color: #3C834B;
 }
 
 .login-wrapper .credit {
@@ -145,14 +145,19 @@ input:focus~i {
     margin-top: 5px;
 }
 
-.login-wrapper .title {
-    font-size: 28px;
-    margin: 0 0 20px 0;
+.title {
+    font-size: 45px;
+    margin: 0 0 35px 0;
+}
+
+.title b {
+    color: #66B357;
 }
 
 #leftHalf {
     width: 50%;
     margin-top: 40px;
+    margin-left: 50px;
     position: absolute;
     left: 0px;
     height: 100vh;
@@ -162,8 +167,8 @@ input:focus~i {
 
 #rightHalf {
     position: absolute;
-    right: 25%;
-    top: 30%;
+    right: 15%;
+    top: 15%;
     height: 100vh;
 }
 
@@ -264,7 +269,7 @@ input:focus~i {
 }
 
 .switch a:hover {
-    color:#66B357;
+    color:#3C834B;
 }
 
 .switch {
