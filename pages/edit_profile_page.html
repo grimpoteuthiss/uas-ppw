@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="../styles/search.css" />
+    <link rel="stylesheet" href="../styles/edit_profile.css" />
     <link rel="stylesheet" href="../styles/post_box.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet"
@@ -28,23 +26,22 @@
             <!-- <p>Rawr!</p> -->
         </div>
 
-
-        <div class="sidebarOption" id="home-btn">
+        <div class="sidebarOption">
             <span class="material-symbols-outlined">home</span>
             <p>Home</p>
         </div>
 
-        <div class="sidebarOption" id="friends-btn">
+        <div class="sidebarOption">
             <span class="material-symbols-outlined">kid_star</span>
             <p>Friends</p>
         </div>
 
-        <div class="sidebarOption active" id="search-btn">
+        <div class="sidebarOption active">
             <span class="material-symbols-outlined">search</span>
             <p>Search</p>
         </div>
 
-        <div class="sidebarOption" id="profile-btn">
+        <div class="sidebarOption">
             <span class="material-symbols-outlined">person</span>
             <p>Profile</p>
         </div>
@@ -62,42 +59,45 @@
 
     <div class="feed">
 
-        <div class="container">
-            <div class="searchInputWrapper">
-                <input class="searchInput" id="searchInput" name="q" type="text" placeholder='Search...'>
-                <i class="searchInputIcon fa fa-search"></i>
-                </input>
+        <h2>Edit Profile</h2>
+
+        <div class="profile-avatar">
+            <button>
+                <img src="https://i.pinimg.com/564x/b8/0d/95/b80d958d7f8a4bfd1883eeab7c58c1f6.jpg">
+                <div class="add-photo-overlay">
+                    <span class="material-symbols-outlined">add_a_photo</span>
+                </div>
+            </button>
+        </div>
+
+        <form>
+
+            <div class="styled-form">
+
+                <div class="input-box">
+                    <p>Username</p>
+                    <input type="text" placeholder="Username *" name="" required>
+                </div>
+
+                <div class="input-box">
+                    <p>Full Name</p>
+                    <input type="text" placeholder="Full Name *" name="" required>
+                </div>
+
+                <div class="input-box">
+                    <p>Password</p>
+                    <input type="password" placeholder="Password *" name="" required>
+                </div>
+
+                <button type="submit">Save</button>
+
             </div>
-        </div>
 
-        <div class="res">
-
-        </div>
-
-
-
-<!--        <div class="post-header">-->
-<!--            <div class="post-avatar">-->
-<!--                <img src="https://i.pinimg.com/736x/0a/71/ad/0a71ad9f1fef69ea1b092e0009424c87.jpg">-->
-<!--            </div>-->
-<!--            <div class="post-username">-->
-<!--                <b>kaisan</b>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="post-header">-->
-<!--            <div class="post-avatar">-->
-<!--                <img src="https://i.pinimg.com/564x/99/ad/59/99ad59d0b039701783e1147be92395f1.jpg">-->
-<!--            </div>-->
-<!--            <div class="post-username">-->
-<!--                <b>heshi</b>-->
-<!--            </div>-->
-<!--        </div>-->
+        </form>
 
     </div>
 
     <script src="../assets/post_box.js"></script>
-    <script src="../assets/search.js"></script>
 
 </body>
 

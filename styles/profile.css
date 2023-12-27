@@ -8,6 +8,12 @@
     --gray-3: #D9D9D9;
     --white: white;
     --black: black;
+    --card_width: 250px;
+    --row_increment: 10px;
+    --card_border_radius: 16px;
+    --card_small: 26;
+    --card_med: 33;
+    --card_large: 45;
 }
 
 * {
@@ -80,6 +86,7 @@ body {
     background-color: var(--gray-1);
     border-radius: 30px;
     transition: all 100ms ease-out;
+    cursor: pointer;
 }
 
 .logo {
@@ -105,7 +112,7 @@ body {
     font-weight: 600;
     border-radius: 50px;
     height: 45px;
-    margin-top: 20px;
+    margin: 20px 0;
     font-size: 16px;
 }
 
@@ -191,6 +198,7 @@ hr {
     color: var(--white);
     font-weight: 600;
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .add-btn {
@@ -207,14 +215,16 @@ hr {
 .add-btn:hover {
     background-color: var(--secondary-color);
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .post-btn:hover {
     background-color: var(--secondary-color);
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
 
-.profile-post {
+/* .profile-post {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -223,4 +233,32 @@ hr {
         margin: 8px;
         border-radius: 20px;
     }
+} */
+
+.pin_container {
+    width: 100%;
+    /* width: 80vw; */
+    /* position: absolute; */
+    /* transform: translateX(-50%); */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, var(--card_width));
+    grid-auto-rows: var(--row_increment);
+    justify-content: center;
+    background-color: black;
 }
+
+/* .card {
+    padding: 0;
+    margin: 15px 10px;
+
+    img {
+        border-radius: 20px;
+    }
+} */
+
+.card {
+    padding: 0;
+    margin: 15px 10px;
+    border-radius: var(--card_border_radius);
+    background-color: red;
+   }
