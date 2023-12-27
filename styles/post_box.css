@@ -1,15 +1,49 @@
 .modal {
-    max-width: 50ch;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 2;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0, .5);
+  z-index: 1;
+}
+
+/* body {
+  &::before,
+  &::after {
+    content: '';
     position: absolute;
-  
-    & > * {
-      margin: 0 0 0.5rem 0;
-    }
+    
   }
   
-  .modal::backdrop {
-    background: rgb(0 0 0 / 0.4);
+  &::after {
+    border-left: dashed #cccccc 2px;
+    bottom: 0;
+    top:0;
+    left: 50%;
   }
+
+  &::before {
+    border-top: dashed #cccccc 2px;
+    top: 50%;
+    left: 0;
+    right: 0;
+  }
+} */
+
+.box {
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0, .2);
+  padding: 30px 30px;
+  /* text-align: center; */
+  width: 600px;
+}
