@@ -9,7 +9,7 @@ $(document).ready( function () {
         $('#submit').on('click', function (e) {
             e.preventDefault()
             console.log('clicked')
-            let text = $("#text").val();
+            let text = $("#text-input").val();
             let data = new FormData();
             data.append('text', text)
             data.append('img', $('input[type=file]')[0].files[0])
@@ -17,15 +17,16 @@ $(document).ready( function () {
                 method: 'POST',
                 url: '../php/posts.php',
                 contentType: false,
-                // async: true,
+                async: true,
                 data:data,
                 processData: false,
                 success: function (data) {
+                    // alert(data)
                     console.log(data)
                 }
             })
-            $(".modal").remove()
-            $(".overlay").remove()
+            // $(".modal").remove()
+            // $(".overlay").remove()
 
         })
 

@@ -9,6 +9,9 @@ $(document).ready(function () {
     $('#search-btn').on('click',function () {
         location.href = '../pages/search_page.html'
     })
+    $('#logout-btn').on('click', function () {
+        location.href = '../php/logout.php'
+    })
 
     $.get("../php/friend_posts.php", function (data, status) {
         console.log(data)

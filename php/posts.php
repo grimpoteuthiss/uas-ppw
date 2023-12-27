@@ -18,20 +18,38 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' ) {
 if($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 
-    $user_id = $_SESSION['user']['id'];
+//    $user_id = $_SESSION['user']['id'];
     $text = $_POST['text'];
-    $filename = $_FILES['img']['name'];
-    $tmp_name = $_FILES['img']['tmp_name'];
-    $ext = explode('.', $filename)[1];
+    $file = '';
+    if (isset($_FILES['img'])) {
+        $filename = $_FILES['img']['name'];
+        $tmp_name = $_FILES['img']['tmp_name'];
+        $uri = null;
+        $ext = explode('.', $filename)[1];
+        $file  = uniqid().'.'.$ext;
+        $upload_dir = '/var/www/html/upload/';
+        $uploaded = move_uploaded_file($tmp_name, $upload_dir.$file);
+        $file = 'https://ppw.ktsabit.com/upload/' . $file;
+    } else {
+        $file = null;
+    }
+
 //    $upload_dir = '/Applications/XAMPP/xamppfiles/htdocs/uas-ppw/upload/';
-    $upload_dir = '/var/www/html/upload/';
-    $file  = uniqid().'.'.$ext;
-    $uploaded = move_uploaded_file($tmp_name, $upload_dir.$file);
-    $uri = 'https://ppw.ktsabit.com/upload/' . $file;
-    $post_id = create_post($user_id, $text, $upload_dir.$file);
-    echo json_encode($uri);
+
+    $post_id = create_post(20, $text, $file);
+    echo json_encode('yes');
 
 }
+
+//$ftp_conn = ftp_connect('103.150.196.125');
+//ftp_login($ftp_conn, 'ktsabit', 'kaisan');
+//
+//if (ftp_put($ftp_conn, '/var/www/html/uploads/'.$file, $tmp_name, FTP_BINARY)) {
+//    $status = "File uploaded successfully!";
+//} else {
+//    $status =  "Error uploading file.";
+//}
+//ftp_close($ftp_conn);
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {

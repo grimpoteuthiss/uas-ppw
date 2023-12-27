@@ -47,7 +47,7 @@
             <p>Profile</p>
         </div>
 
-        <div class="sidebarOption">
+        <div class="sidebarOption" id="logout-btn">
             <span class="material-symbols-outlined">logout</span>
             <p>Logout</p>
         </div>
@@ -122,6 +122,9 @@
         })
         $('#search-btn').on('click',function () {
             location.href = '../pages/search_page.html'
+        })
+        $('#logout-btn').on('click', function () {
+            location.href = '../php/logout.php'
         })
     })
 
