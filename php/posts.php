@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' ) {
         $uri = null;
         $ext = explode('.', $filename)[1];
         $file  = uniqid().'.'.$ext;
-        $upload_dir = '/var/www/html/upload/';
+        $upload_dir = '../upload/';
         $uploaded = move_uploaded_file($tmp_name, $upload_dir.$file);
         $file = 'https://ppw.ktsabit.com/upload/' . $file;
     } else {
