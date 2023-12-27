@@ -1,22 +1,18 @@
-// import './moment'
-// const croppie = require('croppie')
 
 $(document).ready(function () {
-    $('my-image').croppie()
-    $('#friends-btn').click(function () {
-        location.href = '../pages/friends_page.html'
+    // $('#profile-btn').click(function () {
+    //     location.href = 'friends.js'
+    // })
+    $('#home-btn').click(function () {
+        location.href = '../pages/home_page.html'
     })
-    $('#profile-btn').click(function () {
-        location.href = 'friends.js'
-    })
-    $('#search-btn').click(function () {
-        location.href = 'friends.js'
-    })
+    // $('#search-btn').click(function () {
+    //     location.href = 'friends.js'
+    // })
 
-
-    $.get("../php/posts.php", function (data, status) {
+    $.get("../php/friend_posts.php", function (data, status) {
+        console.log(data)
         let posts = JSON.parse(data)
-        console.log(posts)
         posts.forEach((post) => appendPost(post))
     })
 

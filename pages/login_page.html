@@ -142,7 +142,7 @@
     })
 
     $('#google-login').click(function () {
-        window.location.href = 'google_login.php'
+        window.location.href = '../php/google_login.php'
     })
 
 
@@ -163,7 +163,7 @@
             password: $('input[name="password"]').val(),
         };
 
-        $.post("login.php", formData, function (data) {
+        $.post("../php/login.php", formData, function (data) {
             console.log(data);
             if (data === "Username doesn't exist") {
                 $('#error-text').text("Username doesn't exist");

@@ -1,16 +1,18 @@
 <?php
+session_start();
 
-require_once 'vendor/autoload.php';
+
+require_once '../vendor/autoload.php';
 include "db.php";
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . 'google_login.php/');
+$dotenv = Dotenv\Dotenv::createImmutable('../');
 $dotenv->load();
 
 $client = new Google\Client();
-$client->setAuthConfig('client_credentials.json');
+$client->setAuthConfig('../client_credentials.json');
 $client->addScope("email");
 $client->addScope("profile");
-$redirectUri = $_SERVER['hostpath'] . 'google_login.php';
+$redirectUri = $_SERVER['hostpath'] . 'php/google_login.php';
 $client->setRedirectUri($redirectUri);
 $url = $client->createAuthUrl();
 echo $url;
@@ -29,7 +31,7 @@ if (isset($_GET['code'])) {
         $_SESSION['user'] = get_user_by_gid($user->id);
     }
 
-    header('Location: home_page.html');
+    header('Location: ../pages/home_page.html');
 
 } else {
     header('Location: ' . $url);
