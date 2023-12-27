@@ -68,7 +68,7 @@ body {
     .material-symbols-outlined {
         font-variation-settings:
             'FILL' 1,
-            'wght' 400,
+            'wght' 700,
             'GRAD' 0,
             'opsz' 48;
 
@@ -183,7 +183,7 @@ body {
 hr {
     margin-top: 15px;
     border: none;
-    border-top: 1px solid var(--gray-2);
+    border-top: 1px solid var(--gray-3);
 }
 
 .post {
