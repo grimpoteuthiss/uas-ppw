@@ -251,6 +251,7 @@ h2 {
     flex-direction: column;
     /* align-items: flex-end; */
 
+
     .input-box {
         margin-bottom: 20px;
     }
@@ -258,6 +259,10 @@ h2 {
     p {
         padding: 10px 15px;
         font-weight: 600;
+    }
+
+    button {
+        align-self: end;
     }
 
     input {
