@@ -89,20 +89,26 @@ function username_exists($username)
 
 }
 
+function search_user($q)
+{
+    $conn = db_connect();
+    $sql = "SELECT * FROM users WHERE username LIKE ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    $q = "%$q%";
+    mysqli_stmt_bind_param($stmt, "s", $q);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
 function google_id_exists($google_id)
 {
-
     $conn = db_connect();
-
     $sql = "SELECT * FROM users WHERE google_id = ?";
-
     $stmt = mysqli_prepare($conn, $sql);
-
     mysqli_stmt_bind_param($stmt, "s", $google_id);
     mysqli_stmt_execute($stmt);
-
     $result = mysqli_stmt_get_result($stmt);
-
     if (mysqli_num_rows($result) > 0) {
         return true;
     } else {
@@ -111,7 +117,6 @@ function google_id_exists($google_id)
 
 }
 
-// Get user by username
 function get_user($username)
 {
     $conn = db_connect();

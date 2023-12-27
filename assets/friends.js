@@ -1,14 +1,14 @@
 
 $(document).ready(function () {
-    // $('#profile-btn').click(function () {
-    //     location.href = 'friends.js'
-    // })
-    $('#home-btn').click(function () {
+    $('#profile-btn').on('click',function () {
+        location.href = '../pages/profile_page.html'
+    })
+    $('#home-btn').on('click',function () {
         location.href = '../pages/home_page.html'
     })
-    // $('#search-btn').click(function () {
-    //     location.href = 'friends.js'
-    // })
+    $('#search-btn').on('click',function () {
+        location.href = '../pages/search_page.html'
+    })
 
     $.get("../php/friend_posts.php", function (data, status) {
         console.log(data)

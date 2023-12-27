@@ -2,15 +2,14 @@
 // const croppie = require('croppie')
 
 $(document).ready(function () {
-    $('my-image').croppie()
-    $('#friends-btn').click(function () {
+    $('#friends-btn').on('click',function () {
         location.href = '../pages/friends_page.html'
     })
-    $('#profile-btn').click(function () {
-        location.href = 'friends.js'
+    $('#profile-btn').on('click',function () {
+        location.href = '../pages/profile_page.html'
     })
-    $('#search-btn').click(function () {
-        location.href = 'friends.js'
+    $('#search-btn').on('click',function () {
+        location.href = '../pages/search_page.html'
     })
 
 

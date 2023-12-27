@@ -7,6 +7,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="../styles/profile.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet"
@@ -25,22 +26,23 @@
             <!-- <p>Rawr!</p> -->
         </div>
 
-        <div class="sidebarOption">
+
+        <div class="sidebarOption" id="home-btn">
             <span class="material-symbols-outlined">home</span>
             <p>Home</p>
         </div>
 
-        <div class="sidebarOption">
+        <div class="sidebarOption" id="friends-btn">
             <span class="material-symbols-outlined">kid_star</span>
             <p>Friends</p>
         </div>
 
-        <div class="sidebarOption">
+        <div class="sidebarOption" id="search-btn">
             <span class="material-symbols-outlined">search</span>
             <p>Search</p>
         </div>
 
-        <div class="sidebarOption active">
+        <div class="sidebarOption active" id="profile-btn">
             <span class="material-symbols-outlined">person</span>
             <p>Profile</p>
         </div>
@@ -55,16 +57,16 @@
 
         <div class="profile-header">
             <div class="profile-avatar">
-                <img src="https://i.pinimg.com/564x/b8/0d/95/b80d958d7f8a4bfd1883eeab7c58c1f6.jpg">
+                <img id="u-img" src="https://i.pinimg.com/564x/b8/0d/95/b80d958d7f8a4bfd1883eeab7c58c1f6.jpg">
             </div>
             <div class="profile-header-right">
                 <div class="cape-memberi-nama">
                     <div class="oh-yeah">
                         <div class="profile-username">
-                            <p>abucketofchO.Oco</p>
+                            <p id="u-username">abucketofchO.Oco</p>
                         </div>
                         <div class="profile-name">
-                            <p>heshi Tiara</p>
+                            <p id="u-name">heshi Tiara</p>
                         </div>
                     </div>
                     <button class="add-btn">Follow</button>
@@ -96,6 +98,31 @@
     </div>
 
     <!-- <script src="../assets/post_box.js"></script> -->
+<script>
+    $(document).ready(function () {
+
+        $.get('../php/get_current_user.php', function (data, status) {
+            console.log(data)
+            let user = JSON.parse(data)
+            if (user.profile_url != null) {
+                $('#u-img').attr('src', user.profile_url)
+            }
+            $('#u-name').text(user.name)
+            $('#u-username').text(user.username)
+        })
+
+        $('#friends-btn').on('click',function () {
+            location.href = '../pages/friends_page.html'
+        })
+        $('#home-btn').on('click',function () {
+            location.href = '../pages/home_page.html'
+        })
+        $('#search-btn').on('click',function () {
+            location.href = '../pages/search_page.html'
+        })
+    })
+
+</script>
 
 </body>
 

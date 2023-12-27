@@ -130,6 +130,13 @@ body {
     display: none;
 }
 
+textarea {
+    resize: none;
+    width: 100%;
+    border: none;
+    height: 150px;
+}
+
 
 .post-box {
     border-bottom: 1px solid var(--gray-3);
@@ -157,7 +164,6 @@ body {
             font-weight: 500;
             font-size: 16px;
             border: none;
-
         }
 
     }
