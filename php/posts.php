@@ -3,36 +3,36 @@
 // Connect to DB
 require 'db.php';
 
+session_start();
+
 $conn = db_connect();
 
-if(isset($_GET)) {
+//echo json_encode(array("files"=>$_FILES, "post"=>$_POST, "get"=>$_GET, "server"=>$_SERVER, "session"=>$_SESSION));
+
+
+if($_SERVER['REQUEST_METHOD'] === 'GET' ) {
     $posts = get_all_posts();
     echo json_encode($posts);
-//    echo "got it";
 }
 
-if($_POST && isset($_POST['create'])) {
+if($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
-    $user_id = $_POST['user_id'];
+
+    $user_id = $_SESSION['user']['id'];
     $text = $_POST['text'];
-    $image_url = $_POST['image_url'];
-
-    $post_id = create_post($conn, $user_id, $text, $image_url);
-
-    echo "Post created successfully with ID: $post_id";
-
-}
-
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-
-    $post_id = $_POST['post_id'];
-    $text = $_POST['text'];
-
-    update_post($conn, $post_id, $text);
-
-    echo "Post updated successfully";
+    $filename = $_FILES['img']['name'];
+    $tmp_name = $_FILES['img']['tmp_name'];
+    $ext = explode('.', $filename)[1];
+//    $upload_dir = '/Applications/XAMPP/xamppfiles/htdocs/uas-ppw/upload/';
+    $upload_dir = '/var/www/html/upload/';
+    $file  = uniqid().'.'.$ext;
+    $uploaded = move_uploaded_file($tmp_name, $upload_dir.$file);
+    $uri = 'https://ppw.ktsabit.com/upload/' . $file;
+    $post_id = create_post($user_id, $text, $upload_dir.$file);
+    echo json_encode($uri);
 
 }
+
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
 

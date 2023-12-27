@@ -46,13 +46,13 @@ function n_rand($n)
 }
 
 
-function register_user_google($name, $google_id)
+function register_user_google($name, $google_id, $pic)
 {
     $conn = db_connect();
-    $sql = "INSERT INTO users(name, username, google_id) VALUES(?, ?, ?)";
+    $sql = "INSERT INTO users(name, username, google_id, profile_url) VALUES(?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     $username = 'user' . n_rand(10);
-    mysqli_stmt_bind_param($stmt, "sss", $name, $username, $google_id);
+    mysqli_stmt_bind_param($stmt, "ssss", $name, $username, $google_id, $pic);
     try {
         mysqli_stmt_execute($stmt);
 

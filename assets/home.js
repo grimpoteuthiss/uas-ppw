@@ -14,6 +14,7 @@ $(document).ready(function () {
 
 
     $.get("../php/posts.php", function (data, status) {
+        console.log(data)
         let posts = JSON.parse(data)
         console.log(posts)
         posts.forEach((post) => appendPost(post))

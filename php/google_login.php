@@ -27,7 +27,7 @@ if (isset($_GET['code'])) {
     if (google_id_exists($user->id)) {
         $_SESSION['user'] = get_user_by_gid($user->id);
     } else {
-        register_user_google($user->name, $user->id);
+        register_user_google($user->name, $user->id, $user->picture);
         $_SESSION['user'] = get_user_by_gid($user->id);
     }
 
