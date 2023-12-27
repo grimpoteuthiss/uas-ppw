@@ -29,7 +29,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' ) {
         $file  = uniqid().'.'.$ext;
         $upload_dir = '../upload/';
         $uploaded = move_uploaded_file($tmp_name, $upload_dir.$file);
-        $file = 'https://ppw.ktsabit.com/upload/' . $file;
+        if ($uploaded) {
+            $file  = 'https://ppw.ktsabit.com/upload/' . $file;
+        } else {
+            $file = null;
+        }
     } else {
         $file = null;
     }
