@@ -1,11 +1,12 @@
-const modal = document.querySelector("#modal");
-const openModal = document.querySelector(".open-button");
-const closeModal = document.querySelector(".close-button");
+const modal = document.getElementById('modal');
+const openModal = document.getElementById('openModal');
 
-openModal.addEventListener("click", () => {
-  modal.showModal();
+openModal.addEventListener('click', function() {
+  modal.style.display = 'block';
 });
 
-closeModal.addEventListener("click", () => {
-  modal.close();
+window.addEventListener('click', function(event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
 });
