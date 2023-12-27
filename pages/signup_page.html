@@ -95,7 +95,7 @@
             name: $('input[name="name"]').val()
         };
 
-        $.post("register.php", formData, function (data) {
+        $.post("../php/register.php", formData, function (data) {
             console.log(data);
             if (data === "Username already exist") {
                 $('#error-text').text("Username already exist");

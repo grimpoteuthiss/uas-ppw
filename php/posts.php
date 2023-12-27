@@ -5,7 +5,13 @@ require 'db.php';
 
 $conn = db_connect();
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
+if(isset($_GET)) {
+    $posts = get_all_posts();
+    echo json_encode($posts);
+//    echo "got it";
+}
+
+if($_POST && isset($_POST['create'])) {
 
     $user_id = $_POST['user_id'];
     $text = $_POST['text'];

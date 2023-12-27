@@ -34,7 +34,8 @@ function register_user($name, $password, $username)
     return mysqli_insert_id($conn);
 }
 
-function n_rand($n) {
+function n_rand($n)
+{
     $temp = "";
 
     for ($i = 0; $i < $n; $i++) {
@@ -209,7 +210,7 @@ function get_all_posts()
 
     $conn = db_connect();
 
-    $sql = "SELECT * FROM posts";
+    $sql = "SELECT p.text, p.image_url, p.created_at, u.username, u.profile_url FROM posts p join social_media.users u on u.id = p.user_id";
 
     $result = mysqli_query($conn, $sql);
 
