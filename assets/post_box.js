@@ -25,6 +25,7 @@ $(document).ready( function () {
                     console.log(data)
                 }
             })
+            location.reload()
             // $(".modal").remove()
             // $(".overlay").remove()
 
