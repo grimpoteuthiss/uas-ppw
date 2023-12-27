@@ -149,7 +149,7 @@ body {
     .post-box-input {
         display: flex;
         align-items: center;
-        /* padding: 20px; */
+        padding: 20px 0;
 
         input {
             flex: 1;
@@ -186,6 +186,11 @@ hr {
             padding: 6px 10px;
         }
 
+        .post-time {
+            padding: 6px 0;
+            color: var(--gray-2);
+        }
+
         .post-avatar {
             img {
                 clip-path: circle();
@@ -195,9 +200,10 @@ hr {
     }
 
     .post-img {
+        margin-bottom: 10px;
         img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 20px;
         }
     }
 
@@ -211,7 +217,7 @@ hr {
 
             padding: 5px 10px 5px 0;
             color: var(--black);
-            font-size: 25px !important;
+            font-size: 23px !important;
         }
     }
 
@@ -219,8 +225,8 @@ hr {
         display: flex;
         flex-direction: column;
 
-        /*p {*/
-        /*    padding-left: 10px;*/
-        /*}*/
+        p {
+            margin-bottom: 10px;
+        }
     }
 }
