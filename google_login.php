@@ -3,12 +3,14 @@
 require_once 'vendor/autoload.php';
 include "db.php";
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/');
+$dotenv->load();
 
 $client = new Google\Client();
 $client->setAuthConfig('client_credentials.json');
 $client->addScope("email");
 $client->addScope("profile");
-$redirectUri = 'http://localhost/uas-ppw/google_login.php';
+$redirectUri = $_SERVER['hostpath'] . 'google_login.php';
 $client->setRedirectUri($redirectUri);
 $url = $client->createAuthUrl();
 echo $url;
