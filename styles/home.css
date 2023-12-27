@@ -294,3 +294,8 @@ hr {
 *:focus {
     outline: none;
 }
+
+.post-btn:hover {
+    background-color: var(--secondary-color);
+    transition: all 0.2s ease-in-out;
+}
