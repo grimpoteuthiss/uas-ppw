@@ -15,12 +15,12 @@
 
 <body>
 
-  <div class="tracking-section">
+<div class="tracking-section">
     <div id="leftHalf">
         <div class="login-wrapper">
             <p class="title">Sign Up</p>
 
-            <form action="signup.php" method="post">
+            <form>
 
                 <div class="input-box">
                     <input type="text" name="username" required>
@@ -43,14 +43,12 @@
                     <i class='bx bxs-pencil'></i>
                 </div>
 
-                <input type="hidden" name="resbanget" id="input2" value="">
-                
-                <?php if (isset($_GET['error'])) { ?>
-                    <p class="error"> <?php echo $_GET['error']; ?> </p>
-                <?php } ?>
-                
+                <div id="error-div">
+                    <p id="error-text"></p>
+                </div>
+
                 <button type="submit" class="btn" id="btn">Create Account</button>
-                
+
                 <br>
                 <br>
 
@@ -65,25 +63,48 @@
         <p class="title">Cant You Hear Me<br><b>ROAR!</b>-ing</p>
 
 
-        <section >
+        <section>
             <div class="trex">
                 <div class="trex-arm-back">
-                    <img width="60" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-arm.png" />
+                    <img width="60" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-arm.png"/>
                 </div>
                 <div class="trex-body">
                     <div class="trex-eye"></div>
-                    <img width="300" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-body.png" />
+                    <img width="300" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-body.png"/>
                 </div>
                 <div class="trex-arm-front">
-                    <img width="60" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-arm3.png" />
+                    <img width="60" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1600105/trex-arm3.png"/>
                 </div>
             </div>
         </section>
 
     </div>
-  </div>
+</div>
 
-    <script src="dino.js"></script>
+<script src="dino.js"></script>
+<script>
+    $("form").submit(function (e) {
+
+        console.log("submitted");
+
+        e.preventDefault();
+
+        var formData = {
+            username: $('input[name="username"]').val(),
+            password: $('input[name="password"]').val(),
+            name: $('input[name="name"]').val()
+        };
+
+        $.post("register.php", formData, function (data) {
+            console.log(data);
+            if (data === "Username already exist") {
+                $('#error-text').text("Username already exist");
+                $('#error-div').show()
+            }
+        });
+
+    });
+</script>
 
 </body>
 

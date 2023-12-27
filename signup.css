@@ -252,12 +252,14 @@ input:focus~i {
     color: rgb(112, 112, 112);
 }
 
-.error {
-    background: #F8D7DA;
+#error-text {
     color: #cf0011;
-    box-sizing: border-box;
+}
+
+#error-div {
+    background-color: #F8D7DA;
     padding: 15px;
-    width: 100%;
+    display: none;
     border-radius: 5px;
     margin: 20px 0 20px;
 }
