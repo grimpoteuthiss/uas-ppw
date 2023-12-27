@@ -73,7 +73,7 @@
 
 
                 <!-- <button onclick="location.href='google.php'" class="gsi-material-button"> -->
-                <button onclick="location.href='<?= $client->createAuthUrl() ?>'" class="gsi-material-button">
+                <button class="gsi-material-button" id="google-login">
                     <div class="gsi-material-button-state"></div>
                     <div class="gsi-material-button-content-wrapper">
                         <div class="gsi-material-button-icon">
@@ -140,6 +140,11 @@
         let c = (a + b).toString()
         $('#input2').val(c)
     })
+
+    $('#google-login').click(function () {
+        window.location.href = 'google_login.php'
+    })
+
 
     $("form").submit(function (e) {
 
