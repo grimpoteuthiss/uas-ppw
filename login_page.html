@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="dino.css" rel="stylesheet">
+    <link href="login_dino.css" rel="stylesheet">
     <link href="login.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body>
@@ -16,21 +19,21 @@
   <div class="tracking-section">
     <div id="leftHalf">
         <div class="login-wrapper">
-            <p class="title">Masuk</p>
+            <p class="title">Login</p>
 
             <form action="login.php" method="post">
 
                 <div class="input-box">
                     <input type="text" name="username" required>
                     <!-- <input type="text" placeholder="Nama Akun *" required> -->
-                    <span>Nama Akun *</span>
+                    <span>Username *</span>
                     <i class='bx bxs-user'></i>
                 </div>
 
                 <div class="input-box">
                     <input type="password" name="password" required>
                     <!-- <input type="password" placeholder="Sandi *" required> -->
-                    <span>Sandi *</span>
+                    <span>Password *</span>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
 
@@ -41,7 +44,7 @@
                 <div class="input-box">
                     <input type="text" name="input" id="input" required>
                     <!-- <input type="text" placeholder="Jumlahkan Angka di Atas *" required> -->
-                    <span>Jawab Pertanyaan di Atas *</span>
+                    <span>Answer *</span>
                     <i class='bx bxs-pencil'></i>
                 </div>
 
@@ -56,12 +59,12 @@
                 <div class="remember-forgot">
                     <div class="check-wrapper">
                         <input type="checkbox" id="check">
-                        <label for="check">Ingat Saya</label>
+                        <label for="check">Remember Me</label>
                     </div>
-                    <a href="#">Lupa Sandi?</a>
+                    <a href="#">Forget Password?</a>
                 </div>
 
-                <button type="submit" class="btn" id="btn">Masuk</button>
+                <button type="submit" class="btn" id="btn">Login</button>
 
                 <br>
 
@@ -100,7 +103,7 @@
                 <br>
                 <br>
 
-                <p class="switch">Belum punya Akun? <a href="signup_page.html">Daftar</a></p>
+                <p class="switch">Don't have an account? <a href="signup_page.html">Sign Up</a></p>
 
             </form>
         </div>
