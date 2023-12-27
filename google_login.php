@@ -19,6 +19,7 @@ if (isset($_GET['code'])) {
     $google_oauth = new Google\Service\Oauth2($client);
 
     $google_account_info = $google_oauth->userinfo->get();
+    echo "hmm";
     foreach ($google_account_info as $key=>$item) {
         echo $item . '<br>';
         echo $key . '<br>';
