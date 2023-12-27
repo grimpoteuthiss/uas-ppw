@@ -3,7 +3,7 @@
 require_once 'vendor/autoload.php';
 include "db.php";
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . 'google_login.php/');
 $dotenv->load();
 
 $client = new Google\Client();

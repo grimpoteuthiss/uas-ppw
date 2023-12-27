@@ -119,7 +119,8 @@ body {
 
     flex: 0.5;
     /* border-right: 1px solid var(--gray-3); */
-    min-width: fit-content;
+    max-width: 600px;
+    /*min-width: fit-content;*/
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -211,9 +212,10 @@ body {
 
     .post-desc {
         display: flex;
+        flex-direction: column;
 
-        p {
-            padding-left: 10px;
-        }
+        /*p {*/
+        /*    padding-left: 10px;*/
+        /*}*/
     }
 }
