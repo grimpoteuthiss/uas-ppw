@@ -2,6 +2,16 @@
 // const croppie = require('croppie')
 
 $(document).ready(function () {
+
+    $.get('../php/get_current_user.php', function (data, status) {
+        console.log(data)
+        let user = JSON.parse(data)
+        if (user.profile_url != null) {
+            $('#u-img').attr('src', user.profile_url)
+        }
+        $('#u-name').text(user.name)
+        $('#u-username').text(user.username)
+    })
     $('#friends-btn').on('click',function () {
         location.href = '../pages/friends_page.html'
     })

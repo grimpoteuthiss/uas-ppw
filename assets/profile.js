@@ -1,5 +1,5 @@
-
 $(document).ready(function () {
+
     $.get('../php/get_current_user.php', function (data, status) {
         console.log(data)
         let user = JSON.parse(data)
@@ -9,8 +9,9 @@ $(document).ready(function () {
         $('#u-name').text(user.name)
         $('#u-username').text(user.username)
     })
-    $('#profile-btn').on('click',function () {
-        location.href = '../pages/profile_page.html'
+
+    $('#friends-btn').on('click',function () {
+        location.href = '../pages/friends_page.html'
     })
     $('#home-btn').on('click',function () {
         location.href = '../pages/home_page.html'
@@ -22,13 +23,14 @@ $(document).ready(function () {
         location.href = '../php/logout.php'
     })
 
-    $.get("../php/friend_posts.php", function (data, status) {
+    $.get("../php/my_posts.php", function (data, status) {
         console.log(data)
         let posts = JSON.parse(data)
+        console.log(posts)
         posts.forEach((post) => appendPost(post))
     })
-
 })
+
 
 function appendPost(data) {
 

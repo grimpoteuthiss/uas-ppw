@@ -210,6 +210,24 @@ function get_post2($id)
     return mysqli_fetch_assoc($result);
 }
 
+function get_own_posts($uid) {
+    $conn = db_connect();
+
+    $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url
+            FROM posts p
+            JOIN users u ON p.user_id = u.id
+            WHERE u.id = ?
+            ORDER BY p.created_at DESC;";
+
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $uid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+}
+
 function get_friend_posts($uid) {
     $conn = db_connect();
 

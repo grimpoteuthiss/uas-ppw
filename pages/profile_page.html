@@ -7,6 +7,9 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="../styles/profile.css" />
+    <link rel="stylesheet" href="../styles/home.css"/>
+    <link rel="stylesheet" href="../styles/post_box.css"/>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -92,43 +95,21 @@
         <hr>
 
 
-        <div class="pin_container">
-            <div class="card card_small"></div>
-            <div class="card card_medium"></div>
-            <div class="card card_large"></div>
+
+        <div id="posts">
+
         </div>
+
+<!--        <div class="pin_container">-->
+<!--            <div class="card card_small"></div>-->
+<!--            <div class="card card_medium"></div>-->
+<!--            <div class="card card_large"></div>-->
+<!--        </div>-->
 
 
     </div>
 
-<script>
-    $(document).ready(function () {
-
-        $.get('../php/get_current_user.php', function (data, status) {
-            console.log(data)
-            let user = JSON.parse(data)
-            if (user.profile_url != null) {
-                $('#u-img').attr('src', user.profile_url)
-            }
-            $('#u-name').text(user.name)
-            $('#u-username').text(user.username)
-        })
-
-        $('#friends-btn').on('click',function () {
-            location.href = '../pages/friends_page.html'
-        })
-        $('#home-btn').on('click',function () {
-            location.href = '../pages/home_page.html'
-        })
-        $('#search-btn').on('click',function () {
-            location.href = '../pages/search_page.html'
-        })
-        $('#logout-btn').on('click', function () {
-            location.href = '../php/logout.php'
-        })
-    })
-
-</script>
+<script src="../assets/profile.js"></script>
 
 </body>
 

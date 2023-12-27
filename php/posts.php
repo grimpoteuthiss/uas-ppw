@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' ) {
 if($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 
-//    $user_id = $_SESSION['user']['id'];
+    $user_id = $_SESSION['user']['id'];
     $text = $_POST['text'];
     $file = '';
     if (isset($_FILES['img'])) {
@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 //    $upload_dir = '/Applications/XAMPP/xamppfiles/htdocs/uas-ppw/upload/';
 
-    $post_id = create_post(20, $text, $file);
+    $post_id = create_post($user_id, $text, $file);
     echo json_encode('yes');
 
 }
