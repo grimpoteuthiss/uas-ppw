@@ -8,7 +8,14 @@ $(document).ready(function () {
     $('#u-folkah').on('click', function () {
         $.post('../php/toggle_folls.php?u=' + uname, function (data, success) {
             console.log(data)
-            location.reload()
+            // location.reload()
+            let follBtn = $('#u-folkah')
+            if (follBtn.text() === "Unfollow") {
+                follBtn.text("Follow")
+            } else {
+                follBtn.text("Unfollow")
+            }
+
         })
     })
 
