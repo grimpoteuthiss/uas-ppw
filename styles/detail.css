@@ -32,6 +32,7 @@ body {
     border: none;
     display: flex;
 }
+
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 0,
@@ -227,6 +228,7 @@ hr {
 
     .post-footer {
         display: flex;
+
         .material-symbols-outlined {
             font-variation-settings:
                 'FILL' 0,
@@ -309,5 +311,39 @@ hr {
 
 a {
     text-decoration: none;
-    
+
+}
+
+
+/* !!!!! SAMPAH !!!!! */
+
+.post-fav {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        border: none;
+        background-color: transparent;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+}
+
+.box {
+    text-align: center;
+    width: 300px;
+
+    h3 {
+    color: #da222e;
+    }
+    button {
+        border: none;
+        background-color: transparent;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
 }
