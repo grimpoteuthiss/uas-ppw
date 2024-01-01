@@ -12,25 +12,19 @@ function db_connect()
     return $conn;
 }
 
-function update_user($username, $name, $password, $url)
+function update_user($old_username, $username, $name, $url)
 {
     $conn = db_connect();
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "UPDATE users SET name=?, username=?, password=?, profile_url=? where
-                                                                   username=?";
+    $sql = "UPDATE users 
+            SET name=?, username=?, profile_url=? 
+            WHERE username=?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "sssss", $name, $username, $hashed_password, $url, $username);
-    try {
-        mysqli_stmt_execute($stmt);
-    } catch (mysqli_sql_exception $e) {
-        if ($e->getCode() == 1062) {
-            return -1;
-        } else {
-            throw $e;
-        }
-    }
-    return 1;
+    mysqli_stmt_bind_param($stmt, "ssss", $name, $username, $url, $old_username);
+    return mysqli_stmt_execute($stmt);
+
 }
+
+//update_user("user4009993655", "user4009993655", "Kaiiii", "https://lh3.googleusercontent.com/a/ACg8ocKiHkd7Etq075iUO7_eUntBdhIzLX8log-6XekJy517yJM=s96-c");
 
 function register_user($name, $password, $username)
 {
@@ -122,6 +116,7 @@ function search_user($q)
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+
 function google_id_exists($google_id)
 {
     $conn = db_connect();
@@ -138,7 +133,7 @@ function google_id_exists($google_id)
 
 }
 
-function get_user($username, $curr_user)
+function get_user_cmp($username, $curr_user)
 {
     $conn = db_connect();
     $sql = "SELECT *,
@@ -149,6 +144,34 @@ function get_user($username, $curr_user)
             WHERE username = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ss", $curr_user, $username);
+    mysqli_stmt_execute($stmt);
+    return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+}
+
+function get_user($username)
+{
+    $conn = db_connect();
+    $sql = "SELECT *,
+            (SELECT COUNT(*) FROM friends f1 WHERE f1.user_id = u.id) AS following,
+            (SELECT COUNT(*) FROM friends f2 WHERE f2.friend_id = u.id) AS followers
+            FROM users u  
+            WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+}
+
+function save_user($username)
+{
+    $conn = db_connect();
+    $sql = "SELECT *,
+            (SELECT COUNT(*) FROM friends f1 WHERE f1.user_id = u.id) AS following,
+            (SELECT COUNT(*) FROM friends f2 WHERE f2.friend_id = u.id) AS followers
+            FROM users u  
+            WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
     mysqli_stmt_execute($stmt);
     return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 }
@@ -175,6 +198,7 @@ function toggle_folls($username, $curr_user) {
 
 }
 
+
 function is_following ($username, $curr_user) {
     $conn = db_connect();
     $sql = "SELECT 1
@@ -194,7 +218,11 @@ function is_following ($username, $curr_user) {
 function get_user_by_gid($google_id)
 {
     $conn = db_connect();
-    $sql = "SELECT * FROM users WHERE google_id = ?";
+    $sql = "SELECT  *,         
+            (SELECT COUNT(*) FROM friends f1 WHERE f1.user_id = u.id) AS following,
+            (SELECT COUNT(*) FROM friends f2 WHERE f2.friend_id = u.id) AS followers
+            FROM users u   
+            WHERE u.google_id = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $google_id);
     mysqli_stmt_execute($stmt);

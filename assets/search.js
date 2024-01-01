@@ -1,32 +1,21 @@
 
-$(document).ready(function () {
-    $('#profile-btn').on('click',function () {
-        location.href = '../pages/profile_page.html'
-    })
-    $('#home-btn').on('click',function () {
-        location.href = '../pages/home_page.html'
-    })
-    $('#friends-btn').on('click',function () {
-        location.href = '../pages/friends_page.html'
-    })
+$(function () {
+
     $('#logout-btn').on('click', function () {
         location.href = '../php/logout.php'
     })
 
-    $.get("../php/friend_posts.php", function (data, status) {
-        console.log(data)
-        let posts = JSON.parse(data)
-        // posts.forEach((post) => appendPost(post))
-    })
+    let btn = $('input[name=q]')
     
-    $('input[name=q]').on('keyup',function () {
+    btn.on('keyup',function () {
         // console.log($('input[name=q]').val())
-        if ($('input[name=q]').val().length < 1) {
+        if (btn.val().length < 1) {
             $('.res').text('')
             return
         }
-        $.get(`../php/search.php?q=${$('input[name=q]').val()}`, function (data, status) {
-            // console.log(data)
+        $.get(`../php/search.php?q=${btn.val()}`, function (data, status) {
+            console.log(data)
+
             let profiles = JSON.parse(data)
             // console.log(profiles)
             let d = document.createElement('div');
@@ -44,11 +33,13 @@ $(document).ready(function () {
 
 
 function p(profile) {
+    let url = profile.profile_url ?? 'https://placehold.co/500x500?text=Avatar'
+
     let html = `
     <a href="friend.html?u=${profile.username}">
     <div class="post-header">
             <div class="post-avatar">
-                <img src="${profile.profile_url}">
+                <img src="${url}">
             </div>
             <div class="post-username">
                 <b>${profile.username}</b>

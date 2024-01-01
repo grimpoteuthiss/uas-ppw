@@ -1,6 +1,6 @@
 
 
-$(document).ready( function () {
+$( function () {
 
     $(".show-modal").on('click',function () {
         let overlay = $('<div></div>').addClass('overlay')
@@ -56,7 +56,7 @@ let popup = `
             <div class="post-box-header-header">
                 <div class="post-box-header">
                     <div class="post-avatar">
-                               <img src="https://i.pinimg.com/736x/fb/71/1c/fb711c72c45f6675b85bd7382f992bb7.jpg" alt="" id="u-img">
+                               <img src="https://placehold.co/500x500?text=Avatar" alt="" id="u-img">
                     </div>
                     <div class="post-username">
                         <b id="u-username"></b>

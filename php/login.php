@@ -11,7 +11,8 @@ if($_POST) {
     $res = verify_login( $username, $password);
 
     if ($res == 'Login success') {
-        $_SESSION['user'] = get_user($username);
+        $user= save_user($username);
+        $_SESSION['user'] = $user;
     }
 
     echo $res;

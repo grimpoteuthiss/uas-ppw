@@ -1,4 +1,6 @@
 <?php
 session_start();
 
-echo json_encode($_SESSION['user']);
+include "db.php";
+
+echo json_encode(save_user($_SESSION['user']['username']));

@@ -6,107 +6,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="../styles/search.css" />
-    <link rel="stylesheet" href="../styles/post_box.css" />
+    <link rel="stylesheet" href="../styles/search.css"/>
+    <link rel="stylesheet" href="../styles/post_box.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 
 </head>
 
 <body>
 
-    <!-- side bar -->
+<!-- side bar -->
 
-    <div class="sidebar">
+<div class="sidebar">
 
-        <a href="home_page.html">
-            <div class="logo">
-                <img src="../assets/img/logo-rawr.png">
-                <!-- <p>Rawr!</p> -->
-            </div>
-        </a>
-
-        <a href="home_page.html">
-            <div class="sidebarOption" id="home-btn">
-                <span class="material-symbols-outlined">home</span>
-                <p>Home</p>
-            </div>
-        </a>
-
-        <a href="friends_page.html">
-            <div class="sidebarOption" id="friends-btn">
-                <span class="material-symbols-outlined">kid_star</span>
-                <p>Friends</p>
-            </div>
-        </a>
-
-        <a href="search_page.html">
-            <div class="sidebarOption active" id="search-btn">
-                <span class="material-symbols-outlined">search</span>
-                <p>Search</p>
-            </div>
-        </a>
-
-        <a href="profile_page.html">
-            <div class="sidebarOption" id="profile-btn">
-                <span class="material-symbols-outlined">person</span>
-                <p>Profile</p>
-            </div>
-        </a>
-
-        <div class="sidebarOption" id="logout-btn">
-            <span class="material-symbols-outlined">logout</span>
-            <p>Logout</p>
+    <a href="home_page.html">
+        <div class="logo">
+            <img src="../assets/img/logo-rawr.png">
+            <!-- <p>Rawr!</p> -->
         </div>
+    </a>
 
-        <button class="post-btn">Post</button>
+    <a href="home_page.html">
+        <div class="sidebarOption" id="home-btn">
+            <span class="material-symbols-outlined">home</span>
+            <p>Home</p>
+        </div>
+    </a>
+
+    <a href="friends_page.html">
+        <div class="sidebarOption" id="friends-btn">
+            <span class="material-symbols-outlined">kid_star</span>
+            <p>Friends</p>
+        </div>
+    </a>
+
+    <div class="sidebarOption active" id="search-btn">
+        <span class="material-symbols-outlined">search</span>
+        <p>Search</p>
+    </div>
+
+    <a href="profile_page.html">
+        <div class="sidebarOption" id="profile-btn">
+            <span class="material-symbols-outlined">person</span>
+            <p>Profile</p>
+        </div>
+    </a>
+
+    <div class="sidebarOption" id="logout-btn">
+        <span class="material-symbols-outlined">logout</span>
+        <p>Logout</p>
+    </div>
+
+    <button class="post-btn">Post</button>
+
+</div>
+
+<!-- fyp -->
+
+<div class="feed">
+
+    <div class="container">
+        <div class="searchInputWrapper">
+            <input class="searchInput" id="searchInput" name="q" type="text" placeholder='Search...'>
+            <i class="searchInputIcon fa fa-search"></i>
+            </input>
+        </div>
+    </div>
+
+    <div class="res">
 
     </div>
 
-    <!-- fyp -->
 
-    <div class="feed">
+    <!--        <div class="post-header">-->
+    <!--            <div class="post-avatar">-->
+    <!--                <img src="https://i.pinimg.com/736x/0a/71/ad/0a71ad9f1fef69ea1b092e0009424c87.jpg">-->
+    <!--            </div>-->
+    <!--            <div class="post-username">-->
+    <!--                <b>kaisan</b>-->
+    <!--            </div>-->
+    <!--        </div>-->
 
-        <div class="container">
-            <div class="searchInputWrapper">
-                <input class="searchInput" id="searchInput" name="q" type="text" placeholder='Search...'>
-                <i class="searchInputIcon fa fa-search"></i>
-                </input>
-            </div>
-        </div>
+    <!--        <div class="post-header">-->
+    <!--            <div class="post-avatar">-->
+    <!--                <img src="https://i.pinimg.com/564x/99/ad/59/99ad59d0b039701783e1147be92395f1.jpg">-->
+    <!--            </div>-->
+    <!--            <div class="post-username">-->
+    <!--                <b>heshi</b>-->
+    <!--            </div>-->
+    <!--        </div>-->
 
-        <div class="res">
+</div>
 
-        </div>
-
-
-
-<!--        <div class="post-header">-->
-<!--            <div class="post-avatar">-->
-<!--                <img src="https://i.pinimg.com/736x/0a/71/ad/0a71ad9f1fef69ea1b092e0009424c87.jpg">-->
-<!--            </div>-->
-<!--            <div class="post-username">-->
-<!--                <b>kaisan</b>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="post-header">-->
-<!--            <div class="post-avatar">-->
-<!--                <img src="https://i.pinimg.com/564x/99/ad/59/99ad59d0b039701783e1147be92395f1.jpg">-->
-<!--            </div>-->
-<!--            <div class="post-username">-->
-<!--                <b>heshi</b>-->
-<!--            </div>-->
-<!--        </div>-->
-
-    </div>
-
-    <script src="../assets/post_box.js"></script>
-    <script src="../assets/search.js"></script>
+<script src="../assets/post_box.js"></script>
+<script src="../assets/search.js"></script>
 
 </body>
 

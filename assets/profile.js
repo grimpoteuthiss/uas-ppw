@@ -1,27 +1,22 @@
-$(document).ready(function () {
+$(function () {
 
     $.get('../php/get_current_user.php', function (data, status) {
-        console.log(data)
         let user = JSON.parse(data)
         if (user.profile_url != null) {
             $('#u-img').attr('src', user.profile_url)
         }
         $('#u-name').text(user.name)
         $('#u-username').text(user.username)
+        console.log(user.following)
+        $('#u-folls').text(user.followers)
+        $('#u-follw').text(user.following)
     })
 
-    $('#friends-btn').on('click',function () {
-        location.href = '../pages/friends_page.html'
-    })
-    $('#home-btn').on('click',function () {
-        location.href = '../pages/home_page.html'
-    })
-    $('#search-btn').on('click',function () {
-        location.href = '../pages/search_page.html'
-    })
     $('#logout-btn').on('click', function () {
         location.href = '../php/logout.php'
     })
+
+
 
     $.get("../php/my_posts.php", function (data, status) {
         console.log(data)
@@ -40,12 +35,13 @@ function appendPost(data) {
 
     const timestamp = Date.parse(data.created_at);
     const formattedTime = timeAgo(timestamp);
+    let url = data.profile_url ?? 'https://placehold.co/500x500?text=Avatar'
 
     let post = `<div class="post">
     <div class="post-body">
         <div class="post-header">
             <div class="post-avatar">
-                <img src="${data.profile_url}">
+                <img src="${url}">
             </div>
             <div class="post-username">
                 <b>${data.username}</b>

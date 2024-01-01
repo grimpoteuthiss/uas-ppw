@@ -2,6 +2,7 @@
 session_start();
 
 require 'db.php';
+include 'header.php';
 
 $conn = db_connect();
 

@@ -28,7 +28,8 @@ if (isset($_GET['code'])) {
     if (!google_id_exists($user->id)) {
         register_user_google($user->name, $user->id, $user->picture);
     }
-    $_SESSION['user'] = get_user_by_gid($user->id);
+    $user = get_user_by_gid($user->id);
+    $_SESSION['user'] = $user;
 
     header('Location: ../pages/home_page.html');
 

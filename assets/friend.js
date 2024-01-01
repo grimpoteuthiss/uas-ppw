@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     const uname = urlParams.get('u');
@@ -15,6 +15,11 @@ $(document).ready(function () {
             } else {
                 follBtn.text("Unfollow")
             }
+            $.get('../php/get_uname.php?u=' + uname, function (data, status) {
+                let user = JSON.parse(data)
+                $('#u-folls').text(user.followers)
+                $('#u-follw').text(user.following)
+            })
 
         })
     })
@@ -55,12 +60,13 @@ function appendPost(data) {
 
     const timestamp = Date.parse(data.created_at);
     const formattedTime = timeAgo(timestamp);
+    let url = data.profile_url ?? 'https://placehold.co/500x500?text=Avatar'
 
     let post = `<div class="post">
     <div class="post-body">
         <div class="post-header">
             <div class="post-avatar">
-                <img src="${data.profile_url}">
+                <img src="${url}">
             </div>
             <div class="post-username">
                 <b>${data.username}</b>

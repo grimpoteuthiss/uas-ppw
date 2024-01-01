@@ -4,6 +4,7 @@
 require 'db.php';
 
 session_start();
+include 'header.php';
 
 $conn = db_connect();
 
