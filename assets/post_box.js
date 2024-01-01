@@ -21,10 +21,8 @@ $(document).ready( function () {
                 data:data,
                 processData: false,
                 success: function (data) {
-                    // alert(data)
                     console.log(data)
                     location.reload()
-
                 }
             })
             // $(".modal").remove()
@@ -36,8 +34,9 @@ $(document).ready( function () {
             console.log(data)
             let user = JSON.parse(data)
             if (user.profile_url != null) {
-                $('#u-img').attr('src', user.profile_url)
+                console.log(user.profile_url)
             }
+            $('#u-img').attr('src', user.profile_url)
             $('#u-name').text(user.name)
             $('#u-username').text(user.username)
         })

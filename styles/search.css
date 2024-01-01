@@ -193,8 +193,10 @@ hr {
 }
 
 .post-header {
-    padding-top: 5px;
+    padding-top: 10px;
     padding-bottom: 5px;
+    padding-left: 10px;
+
     display: flex;
      /*align-items: center;*/
 
@@ -206,8 +208,16 @@ hr {
         img {
             clip-path: circle();
             height: 40px;
+            width: 40px;
         }
     }
+}
+
+.post-header:hover {
+    border-radius: 10px;
+    cursor: pointer;
+    padding-top: 10px;
+    background-color: #eee;
 }
 
 .post-btn:hover {
@@ -217,5 +227,6 @@ hr {
 
 a {
     text-decoration: none;
+    color: #1f1f1f;
     
 }

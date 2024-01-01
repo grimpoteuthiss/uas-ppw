@@ -45,6 +45,7 @@ $(document).ready(function () {
 
 function p(profile) {
     let html = `
+    <a href="friend.html?u=${profile.username}">
     <div class="post-header">
             <div class="post-avatar">
                 <img src="${profile.profile_url}">
@@ -52,6 +53,7 @@ function p(profile) {
             <div class="post-username">
                 <b>${profile.username}</b>
             </div>
-        </div>`
+        </div>
+</a>`
     return html
 }

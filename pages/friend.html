@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="../styles/post_box.css" />
+  <link rel="stylesheet" href="../styles/profile.css" />
+  <link rel="stylesheet" href="../styles/home.css"/>
+  <link rel="stylesheet" href="../styles/post_box.css"/>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+
+<body>
+
+<!-- side bar -->
+
+<div class="sidebar">
+
+  <a href="home_page.html">
+    <div class="logo">
+      <img src="../assets/img/logo-rawr.png">
+      <!-- <p>Rawr!</p> -->
+    </div>
+  </a>
+
+  <a href="home_page.html">
+    <div class="sidebarOption" id="home-btn">
+      <span class="material-symbols-outlined">home</span>
+      <p>Home</p>
+    </div>
+  </a>
+
+  <a href="friends_page.html">
+    <div class="sidebarOption" id="friends-btn">
+      <span class="material-symbols-outlined">kid_star</span>
+      <p>Friends</p>
+    </div>
+  </a>
+
+  <a href="search_page.html">
+    <div class="sidebarOption active" id="search-btn">
+      <span class="material-symbols-outlined">search</span>
+      <p>Search</p>
+    </div>
+  </a>
+
+  <a href="profile_page.html">
+    <div class="sidebarOption" id="profile-btn">
+      <span class="material-symbols-outlined">person</span>
+      <p>Profile</p>
+    </div>
+  </a>
+
+  <div class="sidebarOption" id="logout-btn">
+    <span class="material-symbols-outlined">logout</span>
+    <p>Logout</p>
+  </div>
+
+  <button class="post-btn">Post</button>
+
+</div>
+
+<!-- fyp -->
+
+<div class="feed">
+
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <img id="u-img" src="https://placehold.co/500x500?text=Avatar">
+    </div>
+    <div class="profile-header-right">
+      <div class="profile-right">
+        <div class="profile-data">
+          <div class="profile-username">
+            <p id="u-username">username</p>
+          </div>
+          <div class="profile-name">
+            <p id="u-name">name</p>
+          </div>
+        </div>
+        <button class="add-btn" id="u-folkah">Follow</button>
+        <!-- <button class="edit-btn">Edit Profile</button> -->
+      </div>
+      <div class="profile-foll">
+        <button>
+          <p><b id="u-folls">0</b> followers</p>
+        </button>
+        <button>
+          <p><b id="u-follw">0</b> following</p>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <hr>
+
+
+
+  <div id="posts">
+
+  </div>
+
+  <!--        <div class="pin_container">-->
+  <!--            <div class="card card_small"></div>-->
+  <!--            <div class="card card_medium"></div>-->
+  <!--            <div class="card card_large"></div>-->
+  <!--        </div>-->
+
+
+</div>
+
+<script src="../assets/friend.js"></script>
+
+</body>
+
+</html>

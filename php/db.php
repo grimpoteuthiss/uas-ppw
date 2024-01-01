@@ -12,14 +12,35 @@ function db_connect()
     return $conn;
 }
 
+function update_user($username, $name, $password, $url)
+{
+    $conn = db_connect();
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "UPDATE users SET name=?, username=?, password=?, profile_url=? where
+                                                                   username=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "sssss", $name, $username, $hashed_password, $url, $username);
+    try {
+        mysqli_stmt_execute($stmt);
+    } catch (mysqli_sql_exception $e) {
+        if ($e->getCode() == 1062) {
+            return -1;
+        } else {
+            throw $e;
+        }
+    }
+    return 1;
+}
+
 function register_user($name, $password, $username)
 {
 
     $conn = db_connect();
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users(name, username, password) VALUES(?, ?, ?)";
+    $sql = "INSERT INTO users(name, username, password, profile_url) VALUES(?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "sss", $name, $username, $hashed_password);
+    $url = 'https://api.dicebear.com/7.x/micah/svg?seed=' . $username;
+    mysqli_stmt_bind_param($stmt, "sss", $name, $username, $hashed_password, $url);
     try {
         mysqli_stmt_execute($stmt);
 
@@ -117,14 +138,57 @@ function google_id_exists($google_id)
 
 }
 
-function get_user($username)
+function get_user($username, $curr_user)
 {
     $conn = db_connect();
-    $sql = "SELECT * FROM users WHERE username = ?";
+    $sql = "SELECT *,
+            (SELECT COUNT(*) FROM friends f1 WHERE f1.user_id = u.id) AS following,
+            (SELECT COUNT(*) FROM friends f2 WHERE f2.friend_id = u.id) AS followers,
+            (SELECT 1 FROM friends f3 WHERE f3.user_id = ? AND f3.friend_id = u.id) AS is_following
+            FROM users u  
+            WHERE username = ?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_bind_param($stmt, "ss", $curr_user, $username);
     mysqli_stmt_execute($stmt);
     return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+}
+
+function toggle_folls($username, $curr_user) {
+    $conn = db_connect();
+    if (is_following($username, $curr_user)) {
+        $sql = "DELETE f FROM friends f
+                JOIN users u ON u.username = ?
+                WHERE user_id = ?
+                AND friend_id = u.id";
+    } else {
+        $sql = "INSERT INTO friends(friend_id, user_id) 
+                VALUES(
+                    (SELECT id FROM users WHERE username = ?),
+                    ?
+                )";
+    }
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $username,$curr_user );
+    $res = mysqli_stmt_execute($stmt);
+//    mysqli_stmt_fetch($stmt);
+    return $res;
+
+}
+
+function is_following ($username, $curr_user) {
+    $conn = db_connect();
+    $sql = "SELECT 1
+            FROM friends
+            JOIN users f ON f.username = ?
+            WHERE user_id = ?
+            AND friend_id = f.id";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $username, $curr_user);
+    $isFollowing = null;
+    mysqli_stmt_bind_result($stmt, $isFollowing);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_fetch($stmt);
+    return $isFollowing;
 }
 
 function get_user_by_gid($google_id)
@@ -210,7 +274,8 @@ function get_post2($id)
     return mysqli_fetch_assoc($result);
 }
 
-function get_own_posts($uid) {
+function get_own_posts($uid)
+{
     $conn = db_connect();
 
     $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url
@@ -228,7 +293,27 @@ function get_own_posts($uid) {
 
 }
 
-function get_friend_posts($uid) {
+function get_user_post($uid)
+{
+    $conn = db_connect();
+
+    $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url
+            FROM posts p
+            JOIN users u ON p.user_id = u.id
+            WHERE u.username = ?
+            ORDER BY p.created_at DESC;";
+
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $uid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+}
+
+function get_friend_posts($uid)
+{
     $conn = db_connect();
 
     $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url
