@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="../styles/post_box.css" />
     <link rel="stylesheet" href="../styles/detail.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -15,6 +16,15 @@
 </head>
 
 <body>
+
+        <div class="box modal" id="modal">
+            <button>
+                <h3>Delete</h3>
+            </button>
+        </div>
+
+
+        <div class="overlay"></div>
 
     <!-- side bar -->
 
@@ -94,8 +104,13 @@
                         <p>ihhh ponyo ama saske lagi pacaran liat deh! hidup ga selamanya cinta dek, hidup katak family
                         </p>
                         <div class="post-fav">
-                            <span class="material-symbols-outlined">favorite</span>
-                            <span class="material-symbols-outlined">chat_bubble</span>
+                            <div>
+                                <span class="material-symbols-outlined">favorite</span>
+                                <span class="material-symbols-outlined">chat_bubble</span>
+                            </div>
+                            <button>
+                                <span class="material-symbols-outlined">more_horiz</span>
+                            </button>
                         </div>
                     </div>
 
@@ -170,7 +185,6 @@
                         </p>
                         <div class="post-fav">
                             <span class="material-symbols-outlined">favorite</span>
-                            <span class="material-symbols-outlined">chat_bubble</span>
                         </div>
                     </div>
                 </div>
