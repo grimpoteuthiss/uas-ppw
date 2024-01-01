@@ -27,6 +27,11 @@ body {
     font-size: 14px;
 }
 
+.post-ribet {
+    background-color: transparent;
+    border: none;
+    display: flex;
+}
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 0,
@@ -232,6 +237,7 @@ hr {
     }
 
     .post-footer {
+        display: flex;
         .material-symbols-outlined {
             font-variation-settings:
                 'FILL' 0,
@@ -266,4 +272,9 @@ hr {
 .post-btn:hover {
     background-color: var(--secondary-color);
     transition: all 0.2s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+    
 }

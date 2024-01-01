@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="../styles/post_box.css" />
     <link rel="stylesheet" href="../styles/profile.css" />
     <link rel="stylesheet" href="../styles/home.css"/>
     <link rel="stylesheet" href="../styles/post_box.css"/>
@@ -24,47 +25,75 @@
 
     <div class="sidebar">
 
-        <div class="logo">
-            <img src="../assets/img/logo-rawr.png">
-            <!-- <p>Rawr!</p> -->
-        </div>
+        <a href="home_page.html">
+            <div class="logo">
+                <img src="../assets/img/logo-rawr.png">
+                <!-- <p>Rawr!</p> -->
+            </div>
+        </a>
 
+        <a href="home_page.html">
+            <div class="sidebarOption" id="home-btn">
+                <span class="material-symbols-outlined">home</span>
+                <p>Home</p>
+            </div>
+        </a>
 
-        <div class="sidebarOption" id="home-btn">
-            <span class="material-symbols-outlined">home</span>
-            <p>Home</p>
-        </div>
+        <a href="friend_page.html">
+            <div class="sidebarOption" id="friends-btn">
+                <span class="material-symbols-outlined">kid_star</span>
+                <p>Friends</p>
+            </div>
+        </a>
 
-        <div class="sidebarOption" id="friends-btn">
-            <span class="material-symbols-outlined">kid_star</span>
-            <p>Friends</p>
-        </div>
+        <a href="search_page.html">
+            <div class="sidebarOption" id="search-btn">
+                <span class="material-symbols-outlined">search</span>
+                <p>Search</p>
+            </div>
+        </a>
 
-        <div class="sidebarOption" id="search-btn">
-            <span class="material-symbols-outlined">search</span>
-            <p>Search</p>
-        </div>
-
-        <div class="sidebarOption active" id="profile-btn">
-            <span class="material-symbols-outlined">person</span>
-            <p>Profile</p>
-        </div>
+        <a href="profile_page.html">
+            <div class="sidebarOption active" id="profile-btn">
+                <span class="material-symbols-outlined">person</span>
+                <p>Profile</p>
+            </div>
+        </a>
 
         <div class="sidebarOption" id="logout-btn">
             <span class="material-symbols-outlined">logout</span>
             <p>Logout</p>
         </div>
 
-
-        
         <button class="post-btn">Post</button>
-
 
     </div>
 
     <!-- fyp -->
 
     <div class="feed">
+
+        <!-- <div class="box modal" id="modal">
+            <div class="post-box">
+
+                <h3>Followers</h3>
+
+                <hr>
+
+                <div class="post-header">
+                    <div class="post-avatar">
+                        <img src="https://i.pinimg.com/564x/64/76/c9/6476c9351269d589550ed2bf5b25c657.jpg">
+                    </div>
+                    <div class="post-username">
+                        <b>dibutuhkan_rsj</b>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="overlay"></div> -->
 
         <div class="profile-header">
             <div class="profile-avatar">
@@ -80,12 +109,16 @@
                             <p id="u-name">heshi Tiara</p>
                         </div>
                     </div>
-                    <!-- <button class="add-btn">Follow</button> -->
-                    <button class="edit-btn">Edit Profile</button>
+                    <button class="add-btn">Follow</button>
+                    <!-- <button class="edit-btn">Edit Profile</button> -->
                 </div>
                 <div class="profile-foll">
-                    <p><b>3</b> followers</p>
-                    <p><b>9</b> following</p>
+                    <button>
+                        <p><b>3</b> followers</p>
+                    </button>
+                    <button>
+                        <p><b>9</b> following</p>
+                    </button>
                 </div>
             </div>
         </div>

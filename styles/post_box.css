@@ -133,4 +133,12 @@
   padding: 30px 30px;
   /* text-align: center; */
   width: 600px;
+  max-height: 400px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.box::-webkit-scrollbar {
+  display: none;
 }

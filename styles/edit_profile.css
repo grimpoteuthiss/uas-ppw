@@ -307,3 +307,8 @@ h2 {
 .styled-form button[type="submit"]:hover {
     background-color: var(--secondary-color);
 }
+
+a {
+    text-decoration: none;
+    
+}
