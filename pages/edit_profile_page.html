@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../styles/post_box.css" />
 
     <link rel="stylesheet" href="../styles/edit_profile.css" />
-    <link rel="stylesheet" href="../styles/post_box.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -63,7 +63,7 @@
             <p>Logout</p>
         </div>
 
-        <button class="post-btn">Post</button>
+<!--        <button class="post-btn">Post</button>-->
 
     </div>
 
@@ -74,7 +74,7 @@
         <h2>Edit Profile</h2>
 
         <div class="profile-avatar">
-            <button>
+            <button id="btn-img">
                 <img id="u-img" src="https://t4.ftcdn.net/jpg/04/08/24/43/360_F_408244382_Ex6k7k8XYzTbiXLNJgIL8gssebpLLBZQ.jpg"/>
                 <div class="add-photo-overlay">
                     <span class="material-symbols-outlined">add_a_photo</span>
@@ -100,16 +100,17 @@
                         <p>Password</p>
                         <input type="password" placeholder="Password *" name="password" required>
                     </div>
+                    <input type="file" id="upload" name="img" style="visibility: hidden" onchange="readURL(this)">
 
-                    <button type="submit" name="submit" id="submit">Save</button>
+                <button type="submit" name="submit" id="submit">Save</button>
             </div>
 
         </form>
 
     </div>
-
-    <script src="../assets/post_box.js"></script>
     <script src="../assets/edit_profile.js"></script>
+
+<!--    <script src="../assets/post_box.js"></script>-->
 
 </body>
 

@@ -19,7 +19,7 @@ $(function () {
 
 
     $.get("../php/posts.php", function (data, status) {
-        // console.log(data)
+        console.log(data)
         let posts = JSON.parse(data)
         console.log(posts)
         posts.forEach((post) => appendPost(post))
@@ -59,6 +59,8 @@ function appendPost(data) {
     let image =data.image_url !== null?  `<div class="post-img">
             <img src="${data.image_url}">
         </div>` : ''
+
+
 
     const timestamp = Date.parse(data.created_at);
     const formattedTime = timeAgo(timestamp);
@@ -103,7 +105,9 @@ function appendPost(data) {
 </div>
 
 <hr>`
-    // console.log(post.text())
+    if (data.liked === 1) {
+        console.log('yes')
+    }
     $("#posts").append(post)
 }
 

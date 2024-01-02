@@ -510,7 +510,8 @@ function get_all_posts()
 
     $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url, 
             (SELECT COUNT(*) FROM comments c WHERE c.post_id = p.id) as c_count,
-            (SELECT COUNT(*) FROM likes l WHERE l.post_id = p.id) as l_count
+            (SELECT COUNT(*) FROM likes l WHERE l.post_id = p.id) as l_count,
+            (SELECT 1 FROM likes l2 WHERE l2.post_id = p.id AND l2.user_id = u.id) as liked
             FROM posts p 
             JOIN social_media.users u
             ON u.id = p.user_id
