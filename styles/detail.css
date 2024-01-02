@@ -8,6 +8,7 @@
     --gray-3: #D9D9D9;
     --white: white;
     --black: black;
+    --variation: unset;
 }
 
 * {
@@ -177,7 +178,7 @@ body {
     display: flex;
 }
 
-.feed-post-btn {
+.feed-post-btn-disabled {
     padding: 0 20px;
     background-color: var(--gray-2);
     border: none;
@@ -187,8 +188,24 @@ body {
     max-width: fit-content;
 }
 
+.feed-post-btn-disabled:hover {
+    cursor: not-allowed;
+}
+
+
+.feed-post-btn {
+    padding: 0 20px;
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--white);
+    border-radius: 50px;
+    height: 35px;
+    max-width: fit-content;
+}
+
 hr {
     margin-top: 15px;
+
     border: none;
     border-top: 1px solid var(--gray-3);
 }
@@ -228,25 +245,39 @@ hr {
 
     .post-footer {
         display: flex;
-
+        flex-direction: column;
         .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 700,
-                'GRAD' 0,
-                'opsz' 48;
+            font-variation-settings: var(--variation);
+                /*'FILL' 0,*/
+                /*'wght' 700,*/
+                /*'GRAD' 0,*/
+                /*'opsz' 48;*/
 
-            padding: 5px 10px 5px 0;
+            /*padding: 5px 10px 5px 0;*/
+            padding: 0;
             color: var(--black);
             font-size: 23px !important;
         }
+        /*.material-symbols-outlined {*/
+        /*    font-variation-settings:*/
+        /*            'FILL' 1,*/
+        /*            'wght' 700,*/
+        /*            'GRAD' 0,*/
+        /*            'opsz' 48;*/
+
+        /*    !*padding: 5px 10px 5px 0;*!*/
+        /*    padding: 0;*/
+        /*    color: #ff4033;*/
+        /*    font-size: 23px !important;*/
+        /*}*/
     }
 
     .post-desc {
         display: flex;
         flex-direction: column;
 
-        p {
+        pre {
+            white-space: pre-wrap;
             margin-bottom: 10px;
         }
     }
@@ -317,9 +348,26 @@ a {
 
 /* !!!!! SAMPAH !!!!! */
 
+.p-fav-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px 0 0;
+}
+
+.p-fav-items {
+    display: flex;
+    flex-direction: row;
+}
+
 .post-fav {
     display: flex;
+    align-self: stretch;
+    width: 100% ;
     justify-content: space-between;
+    flex-direction: row;
 
     button {
         border: none;
@@ -334,16 +382,33 @@ a {
 .box {
     text-align: center;
     width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
 
-    h3 {
+    .delete {
     color: #da222e;
     }
-    button {
+
+    .cancel {
+        color: #1f1f1f;
+    }
+
+    #cancel-btn {
+        border-top: 10px;
         border: none;
         background-color: transparent;
     }
 
-    button:hover {
+    #cancel-btn:hover {
+        cursor: pointer;
+    }
+    #delete-btn {
+        border: none;
+        background-color: transparent;
+    }
+
+    #delete-btn:hover {
         cursor: pointer;
     }
 }

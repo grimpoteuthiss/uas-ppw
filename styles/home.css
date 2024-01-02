@@ -255,7 +255,8 @@ hr {
         display: flex;
         flex-direction: column;
 
-        p {
+        pre {
+            white-space: pre-wrap;
             margin-bottom: 10px;
         }
     }

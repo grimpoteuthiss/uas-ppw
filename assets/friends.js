@@ -18,6 +18,15 @@ $(function () {
         console.log(data)
         let posts = JSON.parse(data)
         posts.forEach((post) => appendPost(post))
+
+        $('.post-username').on('click', function (e) {
+            e.stopPropagation()
+            location.href = 'friend.html?u=' + $(this).data('uid')
+        })
+
+        $('.post-body').on('click', function () {
+            location.href = 'detail_page.html?id=' + $(this).data('id')
+        })
     })
 
 })
@@ -31,15 +40,15 @@ function appendPost(data) {
     const timestamp = Date.parse(data.created_at);
     const formattedTime = timeAgo(timestamp);
 
-    let url = data.profile_url ?? 'https://placehold.co/500x500?text=Avatar'
+    let url = data.profile_url ?? 'https://t4.ftcdn.net/jpg/04/08/24/43/360_F_408244382_Ex6k7k8XYzTbiXLNJgIL8gssebpLLBZQ.jpg'
 
     let post = `<div class="post">
-    <div class="post-body">
+    <div class="post-body" data-id="${data.id}">
         <div class="post-header">
             <div class="post-avatar">
                 <img src="${url}">
             </div>
-            <div class="post-username">
+            <div class="post-username" data-uid="${data.username}">
                 <b>${data.username}</b>
             </div>
             <div class="post-time">
@@ -51,7 +60,7 @@ function appendPost(data) {
 
         `<div class="post-footer">
             <div class="post-desc">
-                <p>${data.text}</p>
+                <pre>${data.text}</pre>
                 <div class="post-fav" id="${data.id}">
                     <span class="material-symbols-outlined">favorite</span>
                     <span class="material-symbols-outlined">chat_bubble</span>
@@ -80,15 +89,15 @@ function timeAgo(timestamp) {
     const years = Math.floor(months / 12);
 
     if (years > 0) {
-        return years + 'y ago';
+        return years + 'y';
     } else if (months > 0) {
-        return months + 'mo ago';
+        return months + 'mo';
     } else if (days > 0) {
-        return days + 'd ago';
+        return days + 'd';
     } else if (hours > 0) {
-        return hours + 'h ago';
+        return hours + 'h';
     } else if (minutes > 0) {
-        return minutes + 'm ago';
+        return minutes + 'm';
     } else {
         return 'Just now';
     }

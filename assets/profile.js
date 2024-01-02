@@ -16,6 +16,39 @@ $(function () {
         location.href = '../php/logout.php'
     })
 
+    $('#folls-btn').on('click', async function () {
+        let modal = $.parseHTML(popup)
+        let data = await $.get('../php/get_current_user.php')
+        let username = JSON.parse(data).username
+        data = await $.get('../php/get_folls.php?u=' + username)
+        data = JSON.parse(data)
+
+        let overlay = $('<div></div>').addClass('overlay')
+        $('body').append(modal, overlay)
+        data.forEach((foll)=>appendComments(foll))
+        $(modal).find('#stats').text("Followers")
+        $(".close-btn").on('click',function () {
+            $(".modal").remove()
+            $(".overlay").remove()
+        })
+    })
+
+    $('#follw-btn').on('click', async function () {
+        let modal = $.parseHTML(popup)
+        let data = await $.get('../php/get_current_user.php')
+        let username = JSON.parse(data).username
+        data = await $.get('../php/get_follw.php?u=' + username)
+        data = JSON.parse(data)
+
+        let overlay = $('<div></div>').addClass('overlay')
+        $('body').append(modal, overlay)
+        data.forEach((foll)=>appendComments(foll))
+        $(modal).find('#stats').text("Following")
+        $(".close-btn").on('click',function () {
+            $(".modal").remove()
+            $(".overlay").remove()
+        })
+    })
 
 
     $.get("../php/my_posts.php", function (data, status) {
@@ -23,6 +56,11 @@ $(function () {
         let posts = JSON.parse(data)
         console.log(posts)
         posts.forEach((post) => appendPost(post))
+
+        $('.post-body').on('click', function () {
+            console.log('printed')
+            location.href = 'detail_page.html?id=' + $(this).data('id')
+        })
     })
 })
 
@@ -35,10 +73,10 @@ function appendPost(data) {
 
     const timestamp = Date.parse(data.created_at);
     const formattedTime = timeAgo(timestamp);
-    let url = data.profile_url ?? 'https://placehold.co/500x500?text=Avatar'
+    let url = data.profile_url ?? 'https://t4.ftcdn.net/jpg/04/08/24/43/360_F_408244382_Ex6k7k8XYzTbiXLNJgIL8gssebpLLBZQ.jpg'
 
     let post = `<div class="post">
-    <div class="post-body">
+    <div class="post-body" data-id="${data.id}">
         <div class="post-header">
             <div class="post-avatar">
                 <img src="${url}">
@@ -55,7 +93,7 @@ function appendPost(data) {
 
         `<div class="post-footer">
             <div class="post-desc">
-                <p>${data.text}</p>
+                <pre>${data.text}</pre>
                 <div class="post-fav" id="${data.id}">
                     <span class="material-symbols-outlined">favorite</span>
                     <span class="material-symbols-outlined">chat_bubble</span>
@@ -72,6 +110,43 @@ function appendPost(data) {
 
 
 
+function appendComments(data) {
+    console.log(data)
+    let url = data.profile_url ?? 'https://t4.ftcdn.net/jpg/04/08/24/43/360_F_408244382_Ex6k7k8XYzTbiXLNJgIL8gssebpLLBZQ.jpg'
+    let foll =  `
+                <div class="post-header">
+                    <div class="post-avatar">
+                        <img src="${url}">
+                    </div>
+                    <div class="post-username" onclick="location.href='friend.html?u=${data.username}'">
+                        <b>${data.username}</b>
+                    </div>
+                </div>`
+    $("#folls").append(foll)
+
+}
+
+let popup = `
+        <div class="box modal" id="modal">
+            <div class="post-box">
+                <div class="popup-head">
+                
+                <h3 id="stats">Followers</h3>
+                <div class="close-btn"><i class="fa fa-close"></i></div>
+
+                </div>
+
+                <hr>
+
+                <div id="folls">
+                
+                </div>
+
+            </div>
+        </div>`
+
+
+
 function timeAgo(timestamp) {
     const currentDate = new Date();
     const targetDate = new Date(timestamp);
@@ -84,15 +159,15 @@ function timeAgo(timestamp) {
     const years = Math.floor(months / 12);
 
     if (years > 0) {
-        return years + 'y ago';
+        return years + 'y';
     } else if (months > 0) {
-        return months + 'mo ago';
+        return months + 'mo';
     } else if (days > 0) {
-        return days + 'd ago';
+        return days + 'd';
     } else if (hours > 0) {
-        return hours + 'h ago';
+        return hours + 'h';
     } else if (minutes > 0) {
-        return minutes + 'm ago';
+        return minutes + 'm';
     } else {
         return 'Just now';
     }

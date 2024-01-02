@@ -51,6 +51,12 @@
     border-bottom: none;
   }
 
+  .popup-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .post-box-footer {
     display: flex;
     align-items: center;
@@ -126,7 +132,7 @@
   }
 } */
 
-.box {
+.p-box {
   background-color: #ffffff;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0,0,0, .2);
@@ -139,6 +145,6 @@
   scrollbar-width: none;
 }
 
-.box::-webkit-scrollbar {
-  display: none;
-}
+/*.box::-webkit-scrollbar {*/
+/*  display: none;*/
+/*}*/

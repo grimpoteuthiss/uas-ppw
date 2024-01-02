@@ -34,7 +34,7 @@ function register_user($name, $password, $username)
     $sql = "INSERT INTO users(name, username, password, profile_url) VALUES(?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     $url = 'https://api.dicebear.com/7.x/micah/svg?seed=' . $username;
-    mysqli_stmt_bind_param($stmt, "sss", $name, $username, $hashed_password, $url);
+    mysqli_stmt_bind_param($stmt, "ssss", $name, $username, $hashed_password, $url);
     try {
         mysqli_stmt_execute($stmt);
 
@@ -271,7 +271,13 @@ function get_post($id)
 
     $conn = db_connect();
 
-    $sql = "SELECT * FROM posts WHERE id=?";
+    $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url ,
+            (SELECT COUNT(*) FROM comments c WHERE c.post_id = p.id) as c_count,
+            (SELECT COUNT(*) FROM likes l WHERE l.post_id = p.id) as l_count
+            FROM posts p 
+            JOIN social_media.users u
+            ON u.id = p.user_id
+            WHERE p.id = ?";
 
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
@@ -320,6 +326,25 @@ function get_own_posts($uid)
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 }
+function get_comments($post_id)
+{
+    $conn = db_connect();
+
+    $sql = "SELECT c.id, c.comment, c.created_at, u.username, u.profile_url
+            FROM comments c
+            JOIN users u ON c.user_id = u.id
+            JOIN posts p ON c.post_id = p.id
+            WHERE p.id = ?
+            ORDER BY p.created_at DESC;";
+
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $post_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+}
 
 function get_user_post($uid)
 {
@@ -340,11 +365,129 @@ function get_user_post($uid)
 
 }
 
+function get_folls($uname) {
+    $conn = db_connect();
+    $sql = "SELECT 
+            uf.username,
+            uf.profile_url,
+            uf.id
+            FROM friends f
+            JOIN users uf
+            ON f.user_id = uf.id
+            JOIN users u 
+            ON f.friend_id = u.id
+            WHERE u.username = ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $uname);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+function is_user_post($uid, $pid) {
+    $conn = db_connect();
+    $sql = "SELECT 
+            1 AS is_owner
+            FROM posts p
+            WHERE p.id = ?
+            AND EXISTS (
+              SELECT 1
+              FROM users u
+              WHERE u.id = p.user_id
+                AND u.id = ?
+            )";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $pid, $uid);
+    mysqli_stmt_execute($stmt);
+    $res = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+    if (isset($res['is_owner'])) {
+        return 1;
+    } else {
+        return 0;
+    }
+
+}
+
+function add_comment($post, $user, $comment) {
+    $conn = db_connect();
+    $sql = "INSERT INTO 
+            comments(post_id, user_id, comment) 
+            VALUES (
+                    ?,
+                    ?,
+                    ?
+            )
+            ";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "sss", $post, $user, $comment);
+    mysqli_stmt_execute($stmt);
+    return mysqli_insert_id($conn);
+
+}
+
+
+function like($pid, $uid) {
+    $conn = db_connect();
+    $sql = "INSERT INTO likes(user_id, post_id) 
+            VALUES (?,?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ii", $uid, $pid);
+    mysqli_stmt_execute($stmt);
+}
+
+function unlike($pid, $uid) {
+    $conn = db_connect();
+    $sql = "DELETE FROM likes 
+            WHERE user_id = ?
+            AND post_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ii", $uid, $pid);
+    mysqli_stmt_execute($stmt);
+}
+
+
+
+function get_comment($id) {
+    $conn = db_connect();
+    $sql = "SELECT c.comment, c.created_at, u.profile_url, u.username
+            FROM comments c
+            JOIN users u
+            ON c.user_id = u.id
+            WHERE c.id = ?
+            ORDER BY c.created_at DESC";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt,'i', $id);
+    mysqli_stmt_execute($stmt);
+    return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+}
+
+function get_follw($uname) {
+    $conn = db_connect();
+    $sql = "SELECT 
+            uf.username,
+            uf.profile_url,
+            uf.id
+            FROM friends f
+            JOIN users u 
+            ON f.user_id = u.id
+            JOIN users uf
+            ON f.friend_id = uf.id
+            WHERE u.username = ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $uname);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+
 function get_friend_posts($uid)
 {
     $conn = db_connect();
 
-    $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url
+    $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url, u.id as uid
             FROM posts p
             JOIN users u ON p.user_id = u.id
             JOIN friends f ON u.id = f.friend_id
@@ -365,7 +508,9 @@ function get_all_posts()
 
     $conn = db_connect();
 
-    $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url 
+    $sql = "SELECT p.id, p.text, p.image_url, p.created_at, u.username, u.profile_url, 
+            (SELECT COUNT(*) FROM comments c WHERE c.post_id = p.id) as c_count,
+            (SELECT COUNT(*) FROM likes l WHERE l.post_id = p.id) as l_count
             FROM posts p 
             JOIN social_media.users u
             ON u.id = p.user_id
@@ -376,6 +521,9 @@ function get_all_posts()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 }
+
+
+//print_r(get_all_posts());
 
 function update_post($id, $text)
 {
@@ -394,8 +542,7 @@ function update_post($id, $text)
 
 }
 
-function delete_post($id)
-{
+function delete_post($id) {
 
     $conn = db_connect();
 
@@ -404,5 +551,5 @@ function delete_post($id)
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
 
-    mysqli_stmt_execute($stmt);
+    return mysqli_stmt_execute($stmt);
 }

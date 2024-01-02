@@ -51,12 +51,12 @@ $( function () {
 })
 
 let popup = `
-<div class="box modal" id="modal">
+<div class="p-box modal" id="modal">
         <div class="post-box">
             <div class="post-box-header-header">
                 <div class="post-box-header">
                     <div class="post-avatar">
-                               <img src="https://placehold.co/500x500?text=Avatar" alt="" id="u-img">
+                               <img src="https://t4.ftcdn.net/jpg/04/08/24/43/360_F_408244382_Ex6k7k8XYzTbiXLNJgIL8gssebpLLBZQ.jpg" alt="" id="u-img">
                     </div>
                     <div class="post-username">
                         <b id="u-username"></b>
@@ -68,7 +68,7 @@ let popup = `
                 <div class="post-box-input">
                     <textarea id="text-input" name="text" placeholder="Roar..." required></textarea>
                 </div>
-                <img src="#" id="blah">
+                <img src="https://placehold.co/500x500?text=Img" id="blah">
 
                 <div class="post-box-footer">
                     <label for="upload">
